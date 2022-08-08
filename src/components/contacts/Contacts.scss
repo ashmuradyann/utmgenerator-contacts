@@ -1,0 +1,114 @@
+.contact__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 4% 0;
+
+    .fields__wrapper {
+        display: grid;
+        grid-template-columns: auto auto;
+
+        .input__wrapper {
+            margin-top: 20px;
+
+            .chip {
+                min-width: 120px;
+                height: 40px;
+                border: 1px solid #c4c4c4;
+                background-color: #eeeeee;
+                border-radius: 4px;
+                margin-right: 5px;
+                padding-right: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                div {
+                    margin: 0 10px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                span {
+                    padding: 1px 5px;
+                    border-radius: 4px;
+                    background-color: #868e96;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .additional {
+        width: 100%;
+        margin-top: 10px;
+
+        .button {
+            display: flex;
+            align-items: center;
+            transition: .2s all;
+
+            div {
+                width: 22px;
+                height: 20px;
+                margin-left: 10px;
+                transition: .2s all;
+                position: relative;
+                cursor: pointer;
+
+                div {
+                    border-radius: 4px;
+                    background-color: #a1a1a1;
+                    position: absolute;
+                }
+
+                .closed1 {
+                    width: 20px;
+                    height: 2px;
+                    left: 0;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .closed2 {
+                    width: 2px;
+                    height: 20px;
+                    left: 0;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                .opened1 {
+                    width: 20px;
+                    height: 2px;
+                    left: 0;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    opacity: 0;
+                }
+
+                .opened2 {
+                    width: 2px;
+                    height: 20px;
+                    left: -55%;
+                    top: 5%;
+                    transform: rotate(90deg) translate(-50%, -50%);
+                }
+            }
+        }
+
+        .dropdown {
+            width: 100%;
+        }
+    }
+
+    .results {
+        width: 100%;
+        margin-top: 20px;
+    }
+}

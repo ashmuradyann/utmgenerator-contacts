@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/utmgenerator-contacts/static/css/main.326f609a.css",
+    "main.js": "/utmgenerator-contacts/static/js/main.fd4ec49f.js",
+    "index.html": "/utmgenerator-contacts/index.html",
+    "main.326f609a.css.map": "/utmgenerator-contacts/static/css/main.326f609a.css.map",
+    "main.fd4ec49f.js.map": "/utmgenerator-contacts/static/js/main.fd4ec49f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.326f609a.css",
+    "static/js/main.fd4ec49f.js"
+  ]
+}

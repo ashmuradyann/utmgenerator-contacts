@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, Snackbar, Alert } from '@mui/material'
 
 import './Contacts.scss'
 
@@ -12,109 +12,131 @@ const Contacts = () => {
         email: "",
         viber: "",
         vk: "",
-        odnoklssnik: "",
+        odnoklassnik: "",
         telegram: "",
         instagram: "",
     })
-
-    console.log(data)
 
     const fields = [
         {
             state: "standard",
             name: "E-mail",
+            hrefStarts: "mailto:",
             value: data.email,
             func: (e) => setData({ ...data, email: e.target.value })
         },
         {
             state: "standard",
             name: "Телефон",
+            hrefStarts: "tel:",
             value: data.phoneNumber,
-            func: (e) => setData({ ...data, phoneNumber: e.target.value })
-            // func: (e) => {
-            //     if (e.target.value.length !== 13) {
-            //         setData({...data, phoneNumber: "+7" + e.target.value.replaceAll("+7", "").replace(/[^+\d]/g, '')})
-            //     }
-            // }
+            func: (e) => {
+                if (e.target.value.length !== 13) {
+                    setData({ ...data, phoneNumber: "+7" + e.target.value.replaceAll("+7", "").replace(/[^+\d]/g, '') })
+                }
+            }
         },
         {
             state: "standard",
             name: "Telegram",
+            hrefStarts: "https://t.me/",
             value: data.telegram,
             func: (e) => setData({ ...data, telegram: e.target.value })
         },
         {
             state: "standard",
             name: "WhatsApp",
+            hrefStarts: "https://wa.me/",
             value: data.whatsApp,
-            func: (e) => setData({ ...data, whatsApp: e.target.value })
+            func: (e) => {
+                if (e.target.value.length !== 13) {
+                    setData({ ...data, whatsApp: "+7" + e.target.value.replaceAll("+7", "").replace(/[^+\d]/g, '') })
+                }
+            }
         },
         {
             state: "additional",
             name: "ВКонтакте",
+            hrefStarts: "https://vk.com/",
             value: data.vk,
             func: (e) => setData({ ...data, vk: e.target.value })
         },
         {
             state: "additional",
             name: "Одноклассники",
-            value: data.odnoklssnik,
-            func: (e) => setData({ ...data, odnoklssnik: e.target.value })
+            hrefStarts: "https://ok.ru/",
+            value: data.odnoklassnik,
+            func: (e) => setData({ ...data, odnoklassnik: e.target.value })
         },
         {
             state: "additional",
             name: "Viber",
+            hrefStarts: "viber://chat?number=",
             value: data.viber,
-            func: (e) => setData({ ...data, viber: e.target.value })
+            func: (e) => {
+                if (e.target.value.length !== 13) {
+                    setData({ ...data, viber: "+7" + e.target.value.replaceAll("+7", "").replace(/[^+\d]/g, '') })
+                }
+            }
         },
         {
             state: "additional",
             name: "Instagram",
+            hrefStarts: "https://www.instagram.com/",
             value: data.instagram,
             func: (e) => setData({ ...data, instagram: e.target.value })
         }
     ]
 
     const [toggleFields, setToggleFields] = useState(true)
+    const [generated, setGenerated] = useState(null)
+    const [snackBar, setSnackBar] = useState(false)
+
+    const allCodeRef = useRef(null)
 
     return (
         <div className="contact__wrapper">
             <h2>Контакты</h2>
             <div className="fields__wrapper">
-                {fields.map(({ state, name, value, func }) => state === "standard" && (
-                    <div className="input__wrapper">
-                        <div className="chip">
-                            <div>{name}</div>
-                            <span>?</span>
+                {fields.map(({ state, name, value, func }) => {
+                    if (name === "Телефон") value = data.phoneNumber !== "+7" ? data.phoneNumber : ""
+                    if (name === "WhatsApp") value = data.whatsApp !== "+7" ? data.whatsApp : ""
+                    if (name === "Viber") value = data.viber !== "+7" ? data.viber : ""
+                    return state === "standard" && (
+                        <div key={name} className="input__wrapper">
+                            <div className="chip">
+                                <div>{name}</div>
+                                {/* <span>?</span> */}
+                            </div>
+                            <TextField
+                                fullWidth
+                                size="small"
+                                variant="outlined"
+                                value={value}
+                                onChange={(e) => func(e)} />
                         </div>
-                        <TextField
-                            sx={{ width: "70%" }}
-                            size="small"
-                            variant="outlined"
-                            value={value}
-                            onChange={(e) => func(e)} />
-                    </div>
-                )
+                    )
+                }
                 )}
             </div>
-            <div className="additional" style={toggleFields ? {justifyContent: "space-between"} : {flexDirection: "column"}}>
-                <div className="toggle__button">
+            <div className="additional__wrapper" style={toggleFields ? null : { flexDirection: "column" }}>
+                <div style={toggleFields ? { marginRight: "20px" } : null} className="toggle__button" onClick={() => setToggleFields(!toggleFields)}>
                     <h3>Дополнительно</h3>
-                    <div onClick={() => setToggleFields(!toggleFields)}>
+                    <div>
                         <div className={toggleFields ? "closed1" : "opened1"}></div>
                         <div className={toggleFields ? "closed2" : "opened2"}></div>
                     </div>
                 </div>
-                <div style={toggleFields ? { display: "none" } : null} className="dropdown">
+                <div style={toggleFields ? { display: "none" } : { marginBottom: "10px" }} className="dropdown">
                     <div className="fields__wrapper">
                         {fields.map(({ state, name, value, func }) => state === "additional" && (
-                            <div className="input__wrapper">
+                            <div key={name} className="input__wrapper">
                                 <div className="chip">
                                     <div>{name}</div>
-                                    <span>?</span>
+                                    {/* <span>?</span> */}
                                 </div>
                                 <TextField
-                                    sx={{ width: "65%" }}
+                                    fullWidth
                                     size="small"
                                     variant="outlined"
                                     value={value}
@@ -125,15 +147,64 @@ const Contacts = () => {
                     </div>
                 </div>
                 <Button
-                    sx={{ marginTop: "10px", width: "150px", height: "40px" }}
-                    // disabled={readyUrl !== "" ? false : true}
+                    sx={{ width: "150px", height: "40px" }}
                     variant="contained"
-                    onClick={() => { }}
+                    onClick={() => {
+                        if (data.phoneNumber !== "" ||
+                            data.whatsApp !== "" ||
+                            data.email !== "" ||
+                            data.viber !== "" ||
+                            data.vk !== "" ||
+                            data.odnoklassnik !== "" ||
+                            data.telegram !== "" ||
+                            data.instagram !== "") {
+                            setGenerated(true)
+                        } else {
+                            setGenerated(false)
+                        }
+                    }}
                 >Сгенерировать
                 </Button>
             </div>
             <div className="results">
                 <h2>Результат</h2>
+                <div className="results__wrapper">
+                    {generated && fields.map(({ name, hrefStarts, value }) => {
+                        if (value !== "") {
+                            return <p key={name}>{name}: <a href={hrefStarts + value}>{value}</a></p>
+                        }
+                    })}
+                    {generated === false && <p>Заполните хотя бы одно поле!</p>}
+                    {generated === null && <p>Пусто</p>}
+                </div>
+                {generated && <div ref={allCodeRef} className="code__wrapper">
+                    {fields.map(({ name, hrefStarts, value }) => {
+                        if (value !== "") {
+                            return <p key={name}>{`<p>${name}: <a href="${hrefStarts + value}">${value}</a></p>`}</p>
+                        }
+                    })}
+                </div>}
+                <Button
+                    sx={{ width: "200px", height: "40px" }}
+                    variant="contained"
+                    disabled={!generated}
+                    onClick={() => {
+                        setSnackBar(true)
+                        let toCopy = allCodeRef.current.outerHTML
+                            .replace('<div class="code__wrapper"><p>', "")
+                            .replace('</p></div>', "")
+                            .replaceAll('&lt;', "<")
+                            .replaceAll('&gt;', ">")
+                            .replaceAll('</p><p>', "")
+                        navigator.clipboard.writeText(toCopy)
+                    }}
+                >Скопировать всё
+                </Button>
+                <Snackbar open={snackBar} autoHideDuration={6000} onClose={() => setSnackBar(false)}>
+                    <Alert onClose={() => setSnackBar(false)} severity="success" sx={{ width: '100%' }}>
+                        Весь код скопировано в буфер обмена!
+                    </Alert>
+                </Snackbar>
             </div>
         </div>
     )

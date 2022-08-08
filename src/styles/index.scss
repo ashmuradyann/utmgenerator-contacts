@@ -27,12 +27,22 @@ body {
 
   .qr__wrapper {
     flex-direction: column;
+
+    * {
+      margin-top: 10px;
+    }
   }
 
-  .qr__wrapper>* {
-    margin-top: 10px;
-  }
+}
 
+@media screen and (max-width: 1050px) {
+  .fields__wrapper {
+    display: block !important;
+
+    .input__wrapper:nth-child(2n) {
+      margin-left: 0px !important;
+    }
+  }
 }
 
 @media screen and (max-width: 991px) {

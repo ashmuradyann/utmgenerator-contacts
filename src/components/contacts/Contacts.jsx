@@ -68,7 +68,7 @@ const Contacts = () => {
         }
     ]
 
-    const [toggleFields, setToggleFields] = useState(false)
+    const [toggleFields, setToggleFields] = useState(true)
 
     return (
         <div className="contact__wrapper">

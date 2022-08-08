@@ -9,7 +9,8 @@
 
     .fields__wrapper {
         display: grid;
-        grid-template-columns: auto auto;
+        // grid-template-columns: auto auto;
+        grid: 50% / auto auto;
 
         .input__wrapper {
             margin-top: 20px;
@@ -47,8 +48,9 @@
     .additional {
         width: 100%;
         margin-top: 10px;
+        display: flex;
 
-        .button {
+        .toggle__button {
             display: flex;
             align-items: center;
             transition: .2s all;
@@ -86,10 +88,9 @@
                 .opened1 {
                     width: 20px;
                     height: 2px;
-                    left: 0;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    opacity: 0;
+                    left: -96%;
+                    top: 40%;
+                    transform: rotate(180deg) translate(-50%, -50%);
                 }
 
                 .opened2 {

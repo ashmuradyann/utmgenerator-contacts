@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { TextField } from '@mui/material'
+import { TextField, Button } from '@mui/material'
 
 import './Contacts.scss'
 
@@ -17,6 +17,8 @@ const Contacts = () => {
         instagram: "",
     })
 
+    console.log(data)
+
     const fields = [
         {
             state: "standard",
@@ -29,6 +31,11 @@ const Contacts = () => {
             name: "Телефон",
             value: data.phoneNumber,
             func: (e) => setData({ ...data, phoneNumber: e.target.value })
+            // func: (e) => {
+            //     if (e.target.value.length !== 13) {
+            //         setData({...data, phoneNumber: "+7" + e.target.value.replaceAll("+7", "").replace(/[^+\d]/g, '')})
+            //     }
+            // }
         },
         {
             state: "standard",
@@ -90,8 +97,8 @@ const Contacts = () => {
                 )
                 )}
             </div>
-            <div className="additional">
-                <div className="button">
+            <div className="additional" style={toggleFields ? {justifyContent: "space-between"} : {flexDirection: "column"}}>
+                <div className="toggle__button">
                     <h3>Дополнительно</h3>
                     <div onClick={() => setToggleFields(!toggleFields)}>
                         <div className={toggleFields ? "closed1" : "opened1"}></div>
@@ -117,6 +124,13 @@ const Contacts = () => {
                         )}
                     </div>
                 </div>
+                <Button
+                    sx={{ marginTop: "10px", width: "150px", height: "40px" }}
+                    // disabled={readyUrl !== "" ? false : true}
+                    variant="contained"
+                    onClick={() => { }}
+                >Сгенерировать
+                </Button>
             </div>
             <div className="results">
                 <h2>Результат</h2>

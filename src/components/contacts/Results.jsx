@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react'
 import { Button, Snackbar, Alert } from '@mui/material'
 
+import './contacts.scss'
+
 const Results = ({ fields, generated }) => {
 
     const [snackBar, setSnackBar] = useState(false)

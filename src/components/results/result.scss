@@ -14,7 +14,8 @@
     align-items: center;
 }
 
-.short__url, .qr__code{
+.short__url,
+.qr__code {
     margin-top: 10px;
 }
 
@@ -32,11 +33,27 @@
     text-align: center;
 }
 
-.qr__img__wrapper > h3 {
+.qr__img__wrapper>h3 {
     margin-bottom: 10px;
 }
 
 .short__url__select {
     display: flex;
     width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+
+    .qr__img {
+        width: 150px;
+    }
+
+}
+
+@media screen and (max-width: 390px) {
+
+    .qr__img {
+        width: 120px;
+    }
+
 }

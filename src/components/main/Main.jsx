@@ -1,8 +1,10 @@
 import { useState, useEffect, memo } from 'react'
+
 import InputUrl from '../input-options/InputUrl'
 import Parameters from '../input-options/Parameters'
 import TrafficRadios from '../input-options/TrafficRadios'
 
+import './main.scss'
 
 const Main = ({ setReadyUrl }) => {
   
@@ -82,7 +84,7 @@ const Main = ({ setReadyUrl }) => {
   }, [proto, url, radio, utmSource, utmMedium, utmCampaign, utmContent, utmTerm])
   
   return (
-    <div className="main">
+    <main>
       <div className="main__container">
         <InputUrl proto={{proto, setProto}} url={{url, setUrl}} />
         <TrafficRadios radio={{radio, setRadio}} />
@@ -93,7 +95,7 @@ const Main = ({ setReadyUrl }) => {
           content={{utmContent, setUtmContent}}
           term={{utmTerm, setUtmTerm}} />
       </div>
-    </div>
+    </main>
   )
 }
 

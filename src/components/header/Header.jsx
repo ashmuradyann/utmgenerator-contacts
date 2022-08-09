@@ -1,5 +1,7 @@
 import { memo } from 'react'
 
+import './header.scss'
+
 const Header = () => {
   return (
     <header>

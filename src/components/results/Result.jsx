@@ -1,8 +1,10 @@
 import { useState, memo } from 'react'
+
 import ShortUrl from './ShortUrl'
 import QrCode from '../qr-code/QrCode'
 import ReadyUrl from './ReadyUrl'
 
+import './result.scss'
 
 const Result = ({ readyUrl }) => {
 

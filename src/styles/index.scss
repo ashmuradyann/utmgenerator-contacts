@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
-@import 'Header.scss';
-@import 'Main.scss';
-@import 'InputUrl.scss';
 @import 'TrafficRadios.scss';
 @import 'Parameters.scss';
-@import 'Result.scss';
 @import 'UsageInfo.scss';
 
 * {
@@ -83,22 +79,6 @@ body {
 
   .short__url__select>* {
     margin-bottom: 10px;
-  }
-
-}
-
-@media screen and (max-width: 450px) {
-
-  .qr__img {
-    width: 150px;
-  }
-
-}
-
-@media screen and (max-width: 390px) {
-
-  .qr__img {
-    width: 120px;
   }
 
 }

@@ -19,7 +19,7 @@ const InputUrl = ({ proto, url }) => {
     return (
         <>
             <h2>Адрес вашей страницы</h2>
-            <div className="input__wrapper">
+            <div style={{display: "flex", margin: "10px 0"}}>
                 <Select
                     value={proto.proto}
                     size="small"

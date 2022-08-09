@@ -1,5 +1,7 @@
 import { TextField, Button } from '@mui/material'
 
+import './contacts.scss'
+
 const TextFields = ({ fields }) => {
     return (
         <div className="fields__wrapper">

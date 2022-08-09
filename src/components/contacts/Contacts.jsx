@@ -4,7 +4,7 @@ import TextFields from './TextFields'
 import AdditionalFields from './AdditionalFields'
 import Results from './Results'
 
-import './Contacts.scss'
+import './contacts.scss'
 
 const Contacts = () => {
 

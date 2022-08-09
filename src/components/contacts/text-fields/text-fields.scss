@@ -1,0 +1,42 @@
+.fields__wrapper {
+    display: grid;
+    grid: 50% / auto auto;
+
+    .input__wrapper {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+
+        &:nth-child(2n) {
+            margin-left: 10px;
+        }
+
+        .chip {
+            width: fit-content;
+            height: 40px;
+            border: 1px solid #c4c4c4;
+            background-color: #eeeeee;
+            border-radius: 4px;
+            margin-right: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            div {
+                margin: 0 10px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            span {
+                padding: 1px 5px;
+                border-radius: 4px;
+                background-color: #868e96;
+                color: #fff;
+            }
+        }
+    }
+}

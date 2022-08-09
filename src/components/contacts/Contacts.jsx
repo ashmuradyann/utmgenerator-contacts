@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
-import TextFields from './TextFields'
-import AdditionalFields from './AdditionalFields'
-import Results from './Results'
+import TextFields from './text-fields/TextFields'
+import AdditionalFields from './additional-fields/AdditionalFields'
+import Results from './results/Results'
 
 import './contacts.scss'
+import LinkConstructor from './link-constructor/LinkConstructor'
 
 const Contacts = () => {
 
@@ -94,15 +95,22 @@ const Contacts = () => {
         }
     ]
 
-    const [toggleFields, setToggleFields] = useState(true)
     const [generated, setGenerated] = useState(null)
 
     return (
         <div className="contact__wrapper">
             <h2>Контакты</h2>
             <TextFields fields={fields} />
-            <AdditionalFields fields={fields} data={data} toggleFields={toggleFields} setToggleFields={setToggleFields} setGenerated={setGenerated} />
-            <Results fields={fields} generated={generated} />
+            <AdditionalFields
+                fields={fields}
+                data={data}
+                setGenerated={setGenerated} />
+            <Results
+                fields={fields}
+                generated={generated} />
+            <LinkConstructor
+                fields={fields}
+                generated={generated} />
         </div>
     )
 }

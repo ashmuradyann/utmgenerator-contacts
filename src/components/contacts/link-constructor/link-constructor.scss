@@ -1,0 +1,36 @@
+.link-constructor {
+    width: 100%;
+    margin-top: 20px;
+
+    .constructor__wrapper {
+        margin-top: 10px;
+        width: 100%;
+        background-color: #eeeeee;
+        margin: 10px 0 20px 0;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .selector {
+            width: 50%;
+            border-right: 1px solid #c4c4c4;
+
+            div {
+                cursor: pointer;
+                padding: 5px;
+
+                &:hover {
+                    background-color: #dedede;
+                }
+            }
+        }
+        
+        .result {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

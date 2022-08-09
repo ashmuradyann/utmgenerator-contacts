@@ -1,9 +1,18 @@
+import { useState } from 'react'
+
 import { TextField, Button } from '@mui/material'
 
-const AdditionalFields = ({ data, fields, toggleFields, setToggleFields, setGenerated }) => {
+import './additional-fields.scss'
+
+const AdditionalFields = ({ data, fields, setGenerated }) => {
+
+    const [toggleFields, setToggleFields] = useState(true)
+
     return (
         <div className="additional__wrapper" style={toggleFields ? null : { flexDirection: "column" }}>
-            <div style={toggleFields ? { marginRight: "20px" } : null} className="toggle__button" onClick={() => setToggleFields(!toggleFields)}>
+            <div style={toggleFields ? { marginRight: "20px" } : null}
+                className="toggle__button"
+                onClick={() => setToggleFields(!toggleFields)}>
                 <h3>Дополнительно</h3>
                 <div>
                     <div className={toggleFields ? "closed1" : "opened1"}></div>

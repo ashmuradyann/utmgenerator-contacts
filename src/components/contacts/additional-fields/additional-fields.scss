@@ -1,0 +1,63 @@
+.additional__wrapper {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+
+    .toggle__button {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        transition: .2s all;
+        cursor: pointer;
+
+        div {
+            width: 22px;
+            height: 20px;
+            margin-left: 10px;
+            transition: .2s all;
+            position: relative;
+
+            div {
+                border-radius: 4px;
+                background-color: #a1a1a1;
+                position: absolute;
+            }
+
+            .closed1 {
+                width: 20px;
+                height: 2px;
+                left: 0;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .closed2 {
+                width: 2px;
+                height: 20px;
+                left: 0;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .opened1 {
+                width: 20px;
+                height: 2px;
+                left: -96%;
+                top: 40%;
+                transform: rotate(180deg) translate(-50%, -50%);
+            }
+
+            .opened2 {
+                width: 2px;
+                height: 20px;
+                left: -55%;
+                top: 5%;
+                transform: rotate(90deg) translate(-50%, -50%);
+            }
+        }
+    }
+
+    .dropdown {
+        width: 100%;
+    }
+}

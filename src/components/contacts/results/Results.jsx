@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { Button, Snackbar, Alert } from '@mui/material'
 
-import './contacts.scss'
+import './results.scss'
 
 const Results = ({ fields, generated }) => {
 

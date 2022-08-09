@@ -1,6 +1,6 @@
-import { TextField, Button } from '@mui/material'
+import { TextField } from '@mui/material'
 
-import './contacts.scss'
+import './text-fields.scss'
 
 const TextFields = ({ fields }) => {
     return (

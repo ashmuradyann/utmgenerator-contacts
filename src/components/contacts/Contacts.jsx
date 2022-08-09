@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react'
 
-import { TextField, Button, Snackbar, Alert } from '@mui/material'
+import TextFields from './TextFields'
+import AdditionalFields from './AdditionalFields'
+import Results from './Results'
 
 import './Contacts.scss'
 
@@ -16,6 +18,10 @@ const Contacts = () => {
         telegram: "",
         instagram: "",
     })
+
+    if (data.phoneNumber === "+7") setData({ ...data, phoneNumber: ""})
+    if (data.whatsApp === "+7") setData({ ...data, whatsApp: ""})
+    if (data.viber === "+7") setData({ ...data, viber: ""})
 
     const fields = [
         {
@@ -71,7 +77,7 @@ const Contacts = () => {
         {
             state: "additional",
             name: "Viber",
-            hrefStarts: "viber://chat?number=",
+            hrefStarts: "https://viber.click/",
             value: data.viber,
             func: (e) => {
                 if (e.target.value.length !== 13) {
@@ -90,122 +96,13 @@ const Contacts = () => {
 
     const [toggleFields, setToggleFields] = useState(true)
     const [generated, setGenerated] = useState(null)
-    const [snackBar, setSnackBar] = useState(false)
-
-    const allCodeRef = useRef(null)
 
     return (
         <div className="contact__wrapper">
             <h2>Контакты</h2>
-            <div className="fields__wrapper">
-                {fields.map(({ state, name, value, func }) => {
-                    if (name === "Телефон") value = data.phoneNumber !== "+7" ? data.phoneNumber : ""
-                    if (name === "WhatsApp") value = data.whatsApp !== "+7" ? data.whatsApp : ""
-                    if (name === "Viber") value = data.viber !== "+7" ? data.viber : ""
-                    return state === "standard" && (
-                        <div key={name} className="input__wrapper">
-                            <div className="chip">
-                                <div>{name}</div>
-                                {/* <span>?</span> */}
-                            </div>
-                            <TextField
-                                fullWidth
-                                size="small"
-                                variant="outlined"
-                                value={value}
-                                onChange={(e) => func(e)} />
-                        </div>
-                    )
-                }
-                )}
-            </div>
-            <div className="additional__wrapper" style={toggleFields ? null : { flexDirection: "column" }}>
-                <div style={toggleFields ? { marginRight: "20px" } : null} className="toggle__button" onClick={() => setToggleFields(!toggleFields)}>
-                    <h3>Дополнительно</h3>
-                    <div>
-                        <div className={toggleFields ? "closed1" : "opened1"}></div>
-                        <div className={toggleFields ? "closed2" : "opened2"}></div>
-                    </div>
-                </div>
-                <div style={toggleFields ? { display: "none" } : { marginBottom: "10px" }} className="dropdown">
-                    <div className="fields__wrapper">
-                        {fields.map(({ state, name, value, func }) => state === "additional" && (
-                            <div key={name} className="input__wrapper">
-                                <div className="chip">
-                                    <div>{name}</div>
-                                    {/* <span>?</span> */}
-                                </div>
-                                <TextField
-                                    fullWidth
-                                    size="small"
-                                    variant="outlined"
-                                    value={value}
-                                    onChange={(e) => func(e)} />
-                            </div>
-                        )
-                        )}
-                    </div>
-                </div>
-                <Button
-                    sx={{ width: "150px", height: "40px" }}
-                    variant="contained"
-                    onClick={() => {
-                        if (data.phoneNumber !== "" ||
-                            data.whatsApp !== "" ||
-                            data.email !== "" ||
-                            data.viber !== "" ||
-                            data.vk !== "" ||
-                            data.odnoklassnik !== "" ||
-                            data.telegram !== "" ||
-                            data.instagram !== "") {
-                            setGenerated(true)
-                        } else {
-                            setGenerated(false)
-                        }
-                    }}
-                >Сгенерировать
-                </Button>
-            </div>
-            <div className="results">
-                <h2>Результат</h2>
-                <div className="results__wrapper">
-                    {generated && fields.map(({ name, hrefStarts, value }) => {
-                        if (value !== "") {
-                            return <p key={name}>{name}: <a href={hrefStarts + value}>{value}</a></p>
-                        }
-                    })}
-                    {generated === false && <p>Заполните хотя бы одно поле!</p>}
-                    {generated === null && <p>Пусто</p>}
-                </div>
-                {generated && <div ref={allCodeRef} className="code__wrapper">
-                    {fields.map(({ name, hrefStarts, value }) => {
-                        if (value !== "") {
-                            return <p key={name}>{`<p>${name}: <a href="${hrefStarts + value}">${value}</a></p>`}</p>
-                        }
-                    })}
-                </div>}
-                <Button
-                    sx={{ width: "200px", height: "40px" }}
-                    variant="contained"
-                    disabled={!generated}
-                    onClick={() => {
-                        setSnackBar(true)
-                        let toCopy = allCodeRef.current.outerHTML
-                            .replace('<div class="code__wrapper"><p>', "")
-                            .replace('</p></div>', "")
-                            .replaceAll('&lt;', "<")
-                            .replaceAll('&gt;', ">")
-                            .replaceAll('</p><p>', "")
-                        navigator.clipboard.writeText(toCopy)
-                    }}
-                >Скопировать всё
-                </Button>
-                <Snackbar open={snackBar} autoHideDuration={6000} onClose={() => setSnackBar(false)}>
-                    <Alert onClose={() => setSnackBar(false)} severity="success" sx={{ width: '100%' }}>
-                        Весь код скопировано в буфер обмена!
-                    </Alert>
-                </Snackbar>
-            </div>
+            <TextFields fields={fields} />
+            <AdditionalFields fields={fields} data={data} toggleFields={toggleFields} setToggleFields={setToggleFields} setGenerated={setGenerated} />
+            <Results fields={fields} generated={generated} />
         </div>
     )
 }

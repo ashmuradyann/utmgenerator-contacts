@@ -3,9 +3,9 @@ import { useState } from 'react'
 import TextFields from './text-fields/TextFields'
 import AdditionalFields from './additional-fields/AdditionalFields'
 import Results from './results/Results'
+import LinkConstructor from './link-constructor/LinkConstructor'
 
 import './contacts.scss'
-import LinkConstructor from './link-constructor/LinkConstructor'
 
 const Contacts = () => {
 
@@ -108,9 +108,8 @@ const Contacts = () => {
             <Results
                 fields={fields}
                 generated={generated} />
-            <LinkConstructor
-                fields={fields}
-                generated={generated} />
+            {generated && <LinkConstructor
+                fields={fields} />}
         </div>
     )
 }

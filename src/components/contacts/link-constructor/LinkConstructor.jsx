@@ -12,7 +12,7 @@ const LinkConstructor = ({ fields }) => {
 
   return (
     <div className="link-constructor">
-      <h2>Связаться с нами</h2>
+      <h2>Предпросмотр</h2>
       <div className="constructor__wrapper">
         <div className="selector">
           {fields.map(({ name, hrefStarts, value }) => {

@@ -24,28 +24,41 @@ const Results = ({ fields, generated }) => {
                             name === "Одноклассники") {
                             return <p key={name}>{name}: <a href={hrefStarts + value}>Написать в {name}</a></p>
                         }
-                        return <p key={name}>{name}: <a href={hrefStarts + value}>{value}</a></p>
+                        if (name === "E-mail") return <p key={name}>Отправить письмо: <a href={hrefStarts + value}>{value}</a></p>
+                        if (name === "Телефон") return <p key={name}>Позвонить: <a href={hrefStarts + value}>{value}</a></p>
                     }
                 })}
                 {generated === false && <p>Заполните хотя бы одно поле!</p>}
                 {generated === null && <p>Пусто</p>}
             </div>
             {generated && <div ref={allCodeRef} className="code__wrapper">
+                {'<div class="selector "'}
                 {fields.map(({ name, hrefStarts, value }) => {
                     if (value !== "") {
                         if (name === "WhatsApp" || name === "Viber") value = value.replace("+", "")
                         if (name === "Telegram" && value.startsWith("https://t.me/")) hrefStarts = ""
-                        if (name === "Telegram" ||
-                            name === "WhatsApp" ||
-                            name === "Viber" ||
-                            name === "ВКонтакте" ||
-                            name === "Instagram" ||
-                            name === "Одноклассники") {
-                            return <p>{`<p>${name}: <a href="${hrefStarts + value}">Написать в ${name}</a></p>`}</p>
+
+                        switch (name) {
+                            case "E-mail":
+                                return `data-email="${value}" `
+                            case "Телефон":
+                                return `data-phone="${value}" `
+                            case "Telegram":
+                                return `data-telegram="${value}" `
+                            case "WhatsApp":
+                                return `data-whatsapp="${value}" `
+                            case "ВКонтакте":
+                                return `data-vkontakte="${value}" `
+                            case "Одноклассники":
+                                return `data-odnoklassnik="${value}" `
+                            case "Viber":
+                                return `data-viber="${value}" `
+                            case "Instagram":
+                                return `data-instagram="${value}" `
                         }
-                        return <p key={name}>{`<p>${name}: <a href="${hrefStarts + value}">${value}</a></p>`}</p>
                     }
                 })}
+                {'></div><script src="./script.js"></script>'}
             </div>}
             <Button
                 sx={{ width: "200px", height: "40px" }}

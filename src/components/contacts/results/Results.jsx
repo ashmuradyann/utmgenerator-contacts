@@ -58,7 +58,7 @@ const Results = ({ fields, generated }) => {
                         }
                     }
                 })}
-                {'></div><script src="./script.js"></script>'}
+                {'></div><script src="https://s.avsweb.ru/js/script.js"></script>'}
             </div>}
             <Button
                 sx={{ width: "200px", height: "40px" }}

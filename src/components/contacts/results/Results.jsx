@@ -32,7 +32,7 @@ const Results = ({ fields, generated }) => {
                 {generated === null && <p>Пусто</p>}
             </div>
             {generated && <div ref={allCodeRef} className="code__wrapper">
-                {'<div class="selector "'}
+                {'<div class="selector"'}
                 {fields.map(({ name, hrefStarts, value }) => {
                     if (value !== "") {
                         if (name === "WhatsApp" || name === "Viber") value = value.replace("+", "")
@@ -40,21 +40,21 @@ const Results = ({ fields, generated }) => {
 
                         switch (name) {
                             case "E-mail":
-                                return `data-email="${value}" `
+                                return ` data-email="${value}"`
                             case "Телефон":
-                                return `data-phone="${value}" `
+                                return ` data-phone="${value}"`
                             case "Telegram":
-                                return `data-telegram="${value}" `
+                                return ` data-telegram="${value}"`
                             case "WhatsApp":
-                                return `data-whatsapp="${value}" `
+                                return ` data-whatsapp="${value}"`
                             case "ВКонтакте":
-                                return `data-vkontakte="${value}" `
+                                return ` data-vkontakte="${value}"`
                             case "Одноклассники":
-                                return `data-odnoklassnik="${value}" `
+                                return ` data-odnoklassnik="${value}"`
                             case "Viber":
-                                return `data-viber="${value}" `
+                                return ` data-viber="${value}"`
                             case "Instagram":
-                                return `data-instagram="${value}" `
+                                return ` data-instagram="${value}"`
                         }
                     }
                 })}

@@ -62,11 +62,59 @@ body {
 @media screen and (max-width: 600px) {
 
   body {
-    padding: 5% 10%;
+    padding: 5% 0;
+  }
+
+  main,
+  .result__wrapper {
+    padding: 30px 25px !important;
+  }
+  
+  .contact__wrapper {
+    padding: 20px !important;
+  }
+  
+  .usage__wrapper {
+    padding: 10px 10px 20px 10px !important;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .usage__info__wrapper {
+    margin: 0;
+    font-size: .5rem !important;
+
+    
+    .strong__text {
+      font-size: 10px;
+    }
+
+    ul {
+      margin-left: 20px !important;
+    }
+  }
+
+  .url__wrapper {
+    flex-direction: column;
+    align-items: normal !important;
   }
 
   .params__input__wrapper {
     flex-direction: column;
+  }
+
+  .additional__wrapper {
+    flex-direction: column;
+
+    button {
+      margin-top: 5px;
+    }
+  }
+
+  .code__wrapper, .results__wrapper {
+    padding: 10px !important;
   }
 
   .params__input__wrapper>* {
@@ -79,6 +127,27 @@ body {
 
   .short__url__select>* {
     margin-bottom: 10px;
+  }
+
+  .constructor__wrapper {
+    flex-direction: column;
+
+    .selector {
+      width: 100% !important;
+      border-right: none !important;
+      border-bottom: 1px solid #c4c4c4 !important;
+
+      div {
+        display: flex;
+        justify-content: center;
+      }
+
+    }
+
+    .result {
+      width: 100% !important;
+      padding: 25px 0 0 0;
+    }
   }
 
 }
